@@ -1,3 +1,4 @@
+import SubredditDetail from "./components/SubredditDetail";
 import SubredditList from "./components/SubredditList";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
         <h2>r/Juan Manuel Grajales</h2>
       </hgroup>
       <SubredditList />
+      <SubredditDetail />
     </div>
   );
 }
