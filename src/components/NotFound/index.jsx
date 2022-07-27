@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Component that renders 404 page
+ *
+ * @returns {JSX.Element}
+ */
 const NotFound = () => {
   return (
     <article>

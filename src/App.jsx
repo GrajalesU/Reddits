@@ -3,6 +3,11 @@ import NotFound from "./components/NotFound";
 import SubredditDetail from "./components/SubredditDetail";
 import SubredditList from "./components/SubredditList";
 
+/**
+ * component that renders the app
+ *
+ * @returns {JSX.Element}
+ */
 function App() {
   return (
     <BrowserRouter>

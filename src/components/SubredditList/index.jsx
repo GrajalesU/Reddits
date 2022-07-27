@@ -3,6 +3,11 @@ import { getSubreddits } from "../../api/reddit";
 import { transformDate } from "../../utils/transfrom";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
+
+/**
+ * Component that renders the list of subreddits
+ * @returns {JSX.Element}
+ */
 const SubredditList = () => {
   const [subreddits, setSubreddits] = useState(undefined);
   const [loading, setLoading] = useState(true);

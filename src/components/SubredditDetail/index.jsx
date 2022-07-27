@@ -4,6 +4,13 @@ import { transformDate, transformHtml } from "../../utils/transfrom";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 
+
+/**
+ * Component that renders the detail of a subreddit
+ * 
+ * @urlParam {string} id
+ * @returns {JSX.Element}
+ */
 const SubredditDetail = () => {
   const [subreddit, setSubreddit] = useState(undefined);
   const [loading, setLoading] = useState(true);
