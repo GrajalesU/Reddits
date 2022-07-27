@@ -16,3 +16,7 @@
   height: 32px;
   border-radius: 50%;
 }
+
+.loading{
+  background-color: #ff4500;
+}
