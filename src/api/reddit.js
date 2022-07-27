@@ -55,6 +55,7 @@ export function getSubreddit(id) {
         over_18: rawSubreddit.over_18,
         icon_img: rawSubreddit.icon_img,
         description_html: rawSubreddit.description_html,
+        header_img: rawSubreddit.header_img,
       };
       return subreddit;
     });
