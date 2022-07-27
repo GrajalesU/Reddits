@@ -58,6 +58,9 @@ export function getSubreddit(id) {
         header_img: rawSubreddit.header_img,
       };
       return subreddit;
+    })
+    .catch((error) => {
+      return { error };
     });
 
   return subreddit;
