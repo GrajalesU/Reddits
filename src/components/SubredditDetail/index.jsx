@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getSubreddit } from "../../api/reddit";
+import { transformDate, transformHtml } from "../../utils/transfrom";
 import "./styles.css";
 
 const SubredditDetail = () => {
@@ -12,15 +13,9 @@ const SubredditDetail = () => {
         const rawDescription = res.description_html;
         const rawDate = res.created;
 
-        let description = rawDescription.replace(/&lt;/g, "<");
-        description = description.replace(/&gt;/g, ">");
-        description = description.replace("<!-- SC_OFF -->", "");
-        description = description.replace("<!-- SC_ON -->", "");
+        let description = transformHtml(rawDescription);
+        const formattedDate = transformDate(rawDate);
 
-        const date = new Date(rawDate);
-        const formattedDate = `${date.getDate()}/${
-          date.getMonth() + 1
-        }/${date.getFullYear()}`;
         setSubreddit({
           ...res,
           description_html: description,
