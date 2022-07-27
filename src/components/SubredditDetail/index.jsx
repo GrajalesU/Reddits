@@ -6,6 +6,7 @@ import "./styles.css";
 
 const SubredditDetail = () => {
   const [subreddit, setSubreddit] = useState(undefined);
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,46 +30,57 @@ const SubredditDetail = () => {
           description_html: description,
           created: formattedDate,
         });
+        setLoading(false);
       });
   }, []);
   return (
     <article>
-      {subreddit && (
+      {loading ? (
+        <button className="loading" aria-busy="true">
+          Please wait
+        </button>
+      ) : (
         <>
-          <header>
-            <div className="title">
-              {subreddit.icon_img && (
-                <img
-                  className="title_icon_img"
-                  src={subreddit.icon_img}
-                  alt={subreddit.title}
-                />
-              )}
-              <h3>
+          {subreddit && (
+            <>
+              <header>
+                <div className="title">
+                  {subreddit.icon_img && (
+                    <img
+                      className="title_icon_img"
+                      src={subreddit.icon_img}
+                      alt={subreddit.title}
+                    />
+                  )}
+                  <h3>
+                    <a
+                      href={`https://www.reddit.com
+  /${subreddit.url}`}
+                    >
+                      {subreddit.display_name}
+                    </a>
+                  </h3>
+                </div>
+                {subreddit.header_img && (
+                  <img src={subreddit.header_img} alt="" />
+                )}
+              </header>
+              <div
+                dangerouslySetInnerHTML={{ __html: subreddit.description_html }}
+              />
+              <footer>
+                <Link to="/">⬅️ Go back</Link>
+                <p>{subreddit.subscribers} Subscribers</p>
+                <p>Created at {subreddit.created}</p>
                 <a
                   href={`https://www.reddit.com
-/${subreddit.url}`}
+  /${subreddit.url}`}
                 >
-                  {subreddit.display_name}
+                  Go to Subreddit: {subreddit.url} ➡️
                 </a>
-              </h3>
-            </div>
-            {subreddit.header_img && <img src={subreddit.header_img} alt="" />}
-          </header>
-          <div
-            dangerouslySetInnerHTML={{ __html: subreddit.description_html }}
-          />
-          <footer>
-            <Link to="/">⬅️ Go back</Link>
-            <p>{subreddit.subscribers} Subscribers</p>
-            <p>Created at {subreddit.created}</p>
-            <a
-              href={`https://www.reddit.com
-/${subreddit.url}`}
-            >
-              Go to Subreddit: {subreddit.url} ➡️
-            </a>
-          </footer>
+              </footer>
+            </>
+          )}
         </>
       )}
     </article>
