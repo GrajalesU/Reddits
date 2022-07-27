@@ -10,11 +10,9 @@ const SubredditList = () => {
         const subreddits = res.map((subreddit) => {
           const rawDate = subreddit.created;
           const date = new Date(rawDate);
-          console.log(date);
           const formattedDate = `${date.getDate()}/${
             date.getMonth() + 1
           }/${date.getFullYear()}`;
-          console.log(formattedDate);
 
           return {
             ...subreddit,
