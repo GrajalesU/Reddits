@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { getSubreddit } from "../../api/reddit";
 import { transformDate, transformHtml } from "../../utils/transfrom";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const SubredditDetail = () => {
   const [subreddit, setSubreddit] = useState(undefined);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     !subreddit &&
       getSubreddit(id).then((res) => {
+        if (res.error) {
+          navigate("/error");
+          return;
+        }
+
         const rawDescription = res.description_html;
         const rawDate = res.created;
 
