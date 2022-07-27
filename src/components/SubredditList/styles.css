@@ -4,8 +4,11 @@
 
 .subreddit_element:hover {
   background-color: #ff4500;
-  color: white;
   cursor: pointer;
+}
+
+.subreddit_element:hover *{
+  color: white;
 }
 
 .subreddit_element_image {
