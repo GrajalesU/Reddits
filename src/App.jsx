@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./components/NotFound";
 import SubredditDetail from "./components/SubredditDetail";
 import SubredditList from "./components/SubredditList";
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<SubredditList />} />
           <Route path="/subreddit/:id" element={<SubredditDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
