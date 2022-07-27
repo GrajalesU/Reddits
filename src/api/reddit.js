@@ -1,9 +1,8 @@
-
 /***
- * function to get the reddit api data
+ * function to get the reddits api data
  */
 export function getSubreddits() {
-  fetch("https://www.reddit.com/reddits.json")
+  const subreddits = fetch("https://www.reddit.com/reddits.json")
     .then((json) => {
       return json.json();
     })
@@ -24,4 +23,41 @@ export function getSubreddits() {
       });
       return subreddits;
     });
+
+  return subreddits;
+}
+
+/***
+ * function to get the reddit api data
+ * @param {string} id - the id of the subreddit
+ */
+export function getSubreddit(id) {
+  const subreddit = fetch(`https://www.reddit.com/reddits.json`)
+    .then((json) => {
+      return json.json();
+    })
+    .then((json) => {
+      const response = json.data.children;
+      const rawSubreddit = response.filter((subreddit) => {
+        return subreddit.data.id === id;
+      });
+      return rawSubreddit[0].data;
+    })
+    .then((rawSubreddit) => {
+      const subreddit = {
+        display_name: rawSubreddit.display_name,
+        url: rawSubreddit.url,
+        subscribers: rawSubreddit.subscribers,
+        created: rawSubreddit.created,
+        public_description: rawSubreddit.public_description,
+        name: rawSubreddit.name,
+        id: rawSubreddit.id,
+        over_18: rawSubreddit.over_18,
+        icon_img: rawSubreddit.icon_img,
+        description_html: rawSubreddit.description_html,
+      };
+      return subreddit;
+    });
+
+  return subreddit;
 }
