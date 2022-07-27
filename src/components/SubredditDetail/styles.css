@@ -1,0 +1,15 @@
+header, footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title{
+  display: flex;
+}
+
+.title_icon_img{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
