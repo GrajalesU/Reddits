@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getSubreddits } from "../../api/reddit";
 import { transformDate } from "../../utils/transfrom";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 const SubredditList = () => {
   const [subreddits, setSubreddits] = useState(undefined);
@@ -21,6 +22,12 @@ const SubredditList = () => {
       });
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleNavigate = (id) => {
+    navigate(`/subreddit/${id}`);
+  };
+
   return (
     <div>
       <main>
@@ -38,7 +45,13 @@ const SubredditList = () => {
           <tbody>
             {subreddits &&
               subreddits.map((subreddit) => (
-                <tr key={subreddit.id} className="subreddit_element">
+                <tr
+                  key={subreddit.id}
+                  className="subreddit_element"
+                  onClick={() => {
+                    handleNavigate(subreddit.id);
+                  }}
+                >
                   <td>
                     <img
                       className="subreddit_element_image"

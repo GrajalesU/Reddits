@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getSubreddit } from "../../api/reddit";
 import { transformDate, transformHtml } from "../../utils/transfrom";
+import { useParams, Link } from "react-router-dom";
 import "./styles.css";
 
 const SubredditDetail = () => {
   const [subreddit, setSubreddit] = useState(undefined);
 
+  const { id } = useParams();
+
   useEffect(() => {
-    const id = "2r05i";
     !subreddit &&
       getSubreddit(id).then((res) => {
         const rawDescription = res.description_html;
@@ -51,14 +53,15 @@ const SubredditDetail = () => {
             dangerouslySetInnerHTML={{ __html: subreddit.description_html }}
           />
           <footer>
+            <Link to="/">⬅️ Go back</Link>
+            <p>{subreddit.subscribers} Subscribers</p>
+            <p>Created at {subreddit.created}</p>
             <a
               href={`https://www.reddit.com
 /${subreddit.url}`}
             >
-              Go to Subreddit: {subreddit.url}
+              Go to Subreddit: {subreddit.url} ➡️
             </a>
-            <p>{subreddit.subscribers} Subscribers</p>
-            <p>Created at {subreddit.created}</p>
           </footer>
         </>
       )}
