@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getSubreddits } from "../../api/reddit";
+import { transformDate } from "../../utils/transfrom";
 import "./styles.css";
 const SubredditList = () => {
   const [subreddits, setSubreddits] = useState(undefined);
@@ -9,10 +10,7 @@ const SubredditList = () => {
       getSubreddits().then((res) => {
         const subreddits = res.map((subreddit) => {
           const rawDate = subreddit.created;
-          const date = new Date(rawDate);
-          const formattedDate = `${date.getDate()}/${
-            date.getMonth() + 1
-          }/${date.getFullYear()}`;
+          const formattedDate = transformDate(rawDate);
 
           return {
             ...subreddit,
